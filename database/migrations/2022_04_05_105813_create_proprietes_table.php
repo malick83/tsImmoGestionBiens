@@ -22,8 +22,10 @@ return new class extends Migration
             $table->integer('nombrePiece');
             $table->string('adresse');
             $table->string('description');
-            $table->unsignedBigInteger('proprietaire_id');
-            $table->foreign('proprietaire_id')->references('id')->on('proprietaires');
+            $table->foreignId('proprietaire_id')
+            ->constrained()
+            ->onUpdate('cascade')
+            ->onDelete('cascade');
             $table->unsignedBigInteger('agence_id');
             $table->foreign('agence_id')->references('id')->on('agences');
             $table->timestamps();
